@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.imageshowlibrary.ImageVpShowActivity;
 import com.android.imageshowlibrary.R;
 import com.android.imageshowlibrary.model.ImageVpModel;
 import com.android.imageshowlibrary.model.ImageVpType;
@@ -40,11 +41,16 @@ public class ImageViewPagerAdapter extends PagerAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.vp_item_image,container,false);
             view.setTag(position);
             final PhotoView image = (PhotoView) view.findViewById(R.id.image);
-
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((ImageVpShowActivity)context).setExitSwichLayout();
+                }
+            });
             if (list.get(position).getImageVpType()== ImageVpType.Local){
-                Glide.with(context).load(new File(list.get(position).getPath())).asBitmap().into(image);
+                Glide.with(context).load(new File(list.get(position).getPath())).crossFade().into(image);
             }else if (list.get(position).getImageVpType()== ImageVpType.Net){
-                Glide.with(context).load(list.get(position).getPath()).asBitmap().into(image);
+                Glide.with(context).load(list.get(position).getPath()).crossFade().into(image);
             }
             cacheView.put(position,view);
         }

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#000000"
     tools:context="com.android.imageshowlibrary.ImageVpShowActivity">
+    <com.android.imageshowlibrary.view.ImageShowViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/vp_imageshow"></com.android.imageshowlibrary.view.ImageShowViewPager>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,14 +24,15 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
             android:id="@+id/linear_back"
+            android:background="@drawable/imagevp_back_bg"
             android:orientation="horizontal">
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/imagevpshow_back"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="40dp"
+            android:src="@drawable/imagevp_back"
+            android:layout_margin="7dp"
             />
         </LinearLayout>
         <TextView
@@ -48,10 +54,4 @@
             android:id="@+id/tv_image_save"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
-<com.android.imageshowlibrary.view.ImageShowViewPager
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginBottom="15dp"
-
-    android:id="@+id/vp_imageshow"></com.android.imageshowlibrary.view.ImageShowViewPager>
-</LinearLayout>
+</FrameLayout>
