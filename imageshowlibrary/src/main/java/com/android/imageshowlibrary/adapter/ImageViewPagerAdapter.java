@@ -8,16 +8,12 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.android.imageshowlibrary.R;
 import com.android.imageshowlibrary.model.ImageVpModel;
 import com.android.imageshowlibrary.model.ImageVpType;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.github.chrisbanes.photoview.PhotoView;
-import com.github.chrisbanes.photoview.PhotoViewAttacher;
 
 import java.io.File;
 import java.util.List;
@@ -30,12 +26,10 @@ public class ImageViewPagerAdapter extends PagerAdapter {
     private Context context;
     private List<ImageVpModel> list;
     private SparseArray<View> cacheView;
-    private String type;
 
-    public ImageViewPagerAdapter(List<ImageVpModel> list, Context context, String type) {
+    public ImageViewPagerAdapter(List<ImageVpModel> list, Context context) {
         this.context = context;
         this.list = list;
-        this.type=type;
         cacheView = new SparseArray<>(list.size());
     }
 
@@ -46,6 +40,7 @@ public class ImageViewPagerAdapter extends PagerAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.vp_item_image,container,false);
             view.setTag(position);
             final PhotoView image = (PhotoView) view.findViewById(R.id.image);
+
             if (list.get(position).getImageVpType()== ImageVpType.Local){
                 Glide.with(context).load(new File(list.get(position).getPath())).asBitmap().into(image);
             }else if (list.get(position).getImageVpType()== ImageVpType.Net){

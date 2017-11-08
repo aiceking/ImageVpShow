@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <LinearLayout
@@ -51,5 +51,7 @@
 <com.android.imageshowlibrary.view.ImageShowViewPager
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="15dp"
+
     android:id="@+id/vp_imageshow"></com.android.imageshowlibrary.view.ImageShowViewPager>
 </LinearLayout>
