@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.imageshowlibrary">
 <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <application>
+    <application
+        >
         <activity android:name=".ImageVpShowActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="orientation|keyboardHidden"
+            android:theme="@style/MyLibraryAppTheme"
             ></activity>
         <!--android:theme="@android:style/Theme.NoTitleBar.Fullscreen"-->
 

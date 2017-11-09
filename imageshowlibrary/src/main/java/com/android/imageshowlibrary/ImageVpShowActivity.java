@@ -1,12 +1,7 @@
 package com.android.imageshowlibrary;
-
-import android.app.Activity;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Fade;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -20,9 +15,8 @@ import com.tandong.switchlayout.SwichLayoutInterFace;
 import com.tandong.switchlayout.SwitchLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ImageVpShowActivity extends Activity implements SwichLayoutInterFace {
+public class ImageVpShowActivity extends AppCompatActivity  {
 private LinearLayout linear_back;
 private ImageShowViewPager vp_imageshow;
 private TextView tv_image_number,tv_image_save;
@@ -30,15 +24,19 @@ private ArrayList<ImageVpModel> imageList;
 private int currentPosition;
 private String imageSaveFileName;
 private ImageViewPagerAdapter adapter;
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_vp_show);
-        setEnterSwichLayout();
         getData();
         initView();
         initViewPager();
+    }
+
+    @Override
+    protected void onPause() {
+        this.overridePendingTransition(0, 0);
+        super.onPause();
     }
 
     private void getData() {
@@ -74,7 +72,7 @@ private ImageViewPagerAdapter adapter;
         linear_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setExitSwichLayout();
+                finish();
             }
         });
         tv_image_save.setOnClickListener(new View.OnClickListener() {
@@ -83,22 +81,5 @@ private ImageViewPagerAdapter adapter;
                 Toast.makeText(ImageVpShowActivity.this, "保存", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    public void setEnterSwichLayout() {
-        SwitchLayout.getFadingIn(this);
-    }
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            setExitSwichLayout();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-    @Override
-    public void setExitSwichLayout() {
-        SwitchLayout.getFadingOut(this,true);
     }
 }

@@ -1,5 +1,9 @@
 <resources>
 
     <color name="black_overlay">#66000000</color>
-
+    <color name="library_colorPrimary">#3F51B5</color>
+    <color name="library_colorPrimaryDark">#303F9F</color>
+    <color name="library_colorAccent">#FF4081</color>
+    <color name="library_colorBlack">#000000</color>
+    <color name="library_transparent">#0000</color>
 </resources>

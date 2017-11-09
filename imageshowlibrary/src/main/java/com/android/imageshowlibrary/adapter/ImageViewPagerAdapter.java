@@ -44,7 +44,7 @@ public class ImageViewPagerAdapter extends PagerAdapter {
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((ImageVpShowActivity)context).setExitSwichLayout();
+                    ((Activity)context).finish();
                 }
             });
             if (list.get(position).getImageVpType()== ImageVpType.Local){

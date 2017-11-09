@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.imageshowlibrary.ImageVpShowActivity;
@@ -18,13 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-private TextView tv;
+private Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tv=(TextView)findViewById(R.id.tv);
-        tv.setOnClickListener(new View.OnClickListener() {
+        btn=(Button) findViewById(R.id.btn);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(MainActivity.this, ImageVpShowActivity.class);
@@ -36,8 +37,7 @@ private TextView tv;
                         "http://old.bz55.com/uploads/allimg/140922/138-140922145121.jpg"));
                 list.add(new ImageVpModel(ImageVpType.Net,
                         "http://old.bz55.com/uploads/allimg/140922/138-140922145121-50.jpg"));
-                list.add(new ImageVpModel(ImageVpType.Net,
-                        "http://old.bz55.com/uploads/allimg/140922/138-140922145121.jpg"));
+
                 list.add(new ImageVpModel(ImageVpType.Net,
                         "http://old.bz55.com/uploads/allimg/140922/138-140922145122.jpg"));
                 list.add(new ImageVpModel(ImageVpType.Net,
@@ -55,23 +55,4 @@ private TextView tv;
         });
     }
 
-    public String getWifiName(Context context) {
-        String wifiName="";
-        WifiManager wifiMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        int wifiState = wifiMgr.getWifiState();
-        WifiInfo info = wifiMgr.getConnectionInfo();
-        wifiName = info != null ? info.getSSID() : "";
-        return wifiName;
-    }
-    public  String getWifiIP(Context context) {
-        String ip = "";
-        WifiManager wifiManager = (WifiManager) context
-                .getSystemService(Context.WIFI_SERVICE);
-        if (wifiManager.isWifiEnabled()) {
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-            int i = wifiInfo.getIpAddress();
-            ip = (i & 0xFF) + "." + ((i >> 8) & 0xFF) + "." + ((i >> 16) & 0xFF) + "." + (i >> 24 & 0xFF);
-        }
-        return ip;
-    }
 }
