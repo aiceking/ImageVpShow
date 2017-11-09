@@ -11,9 +11,6 @@ import android.widget.Toast;
 import com.android.imageshowlibrary.adapter.ImageViewPagerAdapter;
 import com.android.imageshowlibrary.model.ImageVpModel;
 import com.android.imageshowlibrary.view.ImageShowViewPager;
-import com.tandong.switchlayout.SwichLayoutInterFace;
-import com.tandong.switchlayout.SwitchLayout;
-
 import java.util.ArrayList;
 
 public class ImageVpShowActivity extends AppCompatActivity  {
