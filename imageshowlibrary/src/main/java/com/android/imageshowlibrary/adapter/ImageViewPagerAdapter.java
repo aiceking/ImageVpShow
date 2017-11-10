@@ -8,13 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.imageshowlibrary.ImageVpShowHelp;
 import com.android.imageshowlibrary.R;
 import com.android.imageshowlibrary.model.ImageVpModel;
-import com.android.imageshowlibrary.model.ImageVpType;
-import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -45,11 +43,7 @@ public class ImageViewPagerAdapter extends PagerAdapter {
                     ((Activity)context).finish();
                 }
             });
-            if (list.get(position).getImageVpType()== ImageVpType.Local){
-                Glide.with(context).load(new File(list.get(position).getPath())).crossFade().into(image);
-            }else if (list.get(position).getImageVpType()== ImageVpType.Net){
-                Glide.with(context).load(list.get(position).getPath()).crossFade().into(image);
-            }
+            ImageVpShowHelp.getInstance().showImage(context,list.get(position).getImageVpType(),list.get(position).getPath(),image);
             cacheView.put(position,view);
         }
         container.addView(view);

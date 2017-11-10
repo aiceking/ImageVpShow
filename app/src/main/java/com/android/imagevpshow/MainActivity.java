@@ -9,12 +9,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.imageshowlibrary.ImageVpShowActivity;
+import com.android.imageshowlibrary.ImageVpShowHelp;
 import com.android.imageshowlibrary.model.ImageVpModel;
 import com.android.imageshowlibrary.model.ImageVpType;
+import com.bumptech.glide.Glide;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +32,16 @@ private Button btn;
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ImageVpShowHelp.getInstance().setShowImageListener(new ImageVpShowHelp.showImageListener() {
+                    @Override
+                    public void showImage(Context context, ImageVpType imageVpType, String path, ImageView imageView) {
+                        if (imageVpType== ImageVpType.Local){
+                            Glide.with(context).load(new File(path)).crossFade().into(imageView);
+                        }else if (imageVpType== ImageVpType.Net){
+                            Glide.with(context).load(path).crossFade().into(imageView);
+                        }
+                    }
+                });
                 Intent intent=new Intent(MainActivity.this, ImageVpShowActivity.class);
                 ArrayList<ImageVpModel> list=new ArrayList<>();
                 list.add(new ImageVpModel(ImageVpType.Net,
