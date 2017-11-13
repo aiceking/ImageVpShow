@@ -51,9 +51,9 @@ public class ImageVpShowHelp {
             showToast(context,"请初始化图片加载接口");
         }
     }
-    public void saveImage(Context context, String path,int position){
+    public void saveImage(Context context, String url,int position){
         if (saveImageListener!=null){
-            saveImageListener.saveImage(context,path,position);
+            saveImageListener.saveImage(context,url,position);
         }else{
             showToast(context,"请初始化图片下载接口");
         }
