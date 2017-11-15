@@ -15,7 +15,14 @@ import com.android.imageshowlibrary.adapter.ImageViewPagerAdapter;
 import com.android.imageshowlibrary.model.ImageVpModel;
 import com.android.imageshowlibrary.model.ImageVpType;
 import com.android.imageshowlibrary.view.ImageShowViewPager;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yanzhenjie.permission.PermissionListener;
+import com.yanzhenjie.permission.Rationale;
+import com.yanzhenjie.permission.RationaleListener;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class ImageVpShowActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 private LinearLayout linear_back;
@@ -82,44 +89,51 @@ private ImageViewPagerAdapter adapter;
             tv_image_save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (!getStoragePermissions(ImageVpShowActivity.this))return;
-                    saveImage();
+                    getFilePerMission();
+
                 }
             });
 
     }
-public void saveImage(){
+
+    private void getFilePerMission() {
+        AndPermission.with(this)
+                .requestCode(100)
+                .permission(Permission.STORAGE)
+                .rationale(new RationaleListener() {
+                    @Override
+                    public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
+                        rationale.resume();
+                    }
+                }).callback(new PermissionListener() {
+            @Override
+            public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                if(AndPermission.hasPermission(ImageVpShowActivity.this,Permission.STORAGE)) {
+                    saveImage();
+                } else {
+                    Toast.makeText(ImageVpShowActivity.this, "存储权限授予失败，请自行在设置中授权", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+                if (AndPermission.hasAlwaysDeniedPermission(ImageVpShowActivity.this, deniedPermissions)) {
+                    Toast.makeText(ImageVpShowActivity.this, "您已手动拒绝存储权限，请自行在设置中授权", Toast.LENGTH_SHORT).show();
+                }else if (!AndPermission.hasPermission(ImageVpShowActivity.this,Permission.STORAGE)){
+                    Toast.makeText(ImageVpShowActivity.this, "请开启存储权限", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        }).start();
+    }
+
+    public void saveImage(){
     if (imageList.get(currentPosition).getImageVpType()== ImageVpType.Local){
         ImageVpShowHelp.getInstance().showToast(ImageVpShowActivity.this,"该图为本地图片，无需下载");
     }else{
         ImageVpShowHelp.getInstance().saveImage(ImageVpShowActivity.this,imageList.get(currentPosition).getPath(),currentPosition);
     }
 }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode==REQUEST_EXTERNAL_STORAGE){
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                saveImage();
-            }
-        }
-    }
 
-    public  boolean getStoragePermissions(Activity activity) {
-         boolean flag=false;
-        try {
-            //检测是否有写的权限
-            int permission = ActivityCompat.checkSelfPermission(activity,
-                    "android.permission.WRITE_EXTERNAL_STORAGE");
-            if (permission != PackageManager.PERMISSION_GRANTED) {
-                // 没有写的权限，去申请写的权限，会弹出对话框
-                ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
-            }else{
-                flag=true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return flag;
-    }
+
 }
