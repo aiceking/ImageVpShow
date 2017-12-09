@@ -10,8 +10,8 @@ import com.android.imageshowlibrary.model.ImageVpType;
  * Created by radio on 2017/11/10.
  */
 
-public class ImageVpShowHelp {
-    public void setShowImageListener(ImageVpShowHelp.showImageListener showImageListener) {
+public class ImageVpShowManager {
+    public void setShowImageListener(ImageVpShowManager.showImageListener showImageListener) {
         this.showImageListener = showImageListener;
     }
     private showImageListener showImageListener;
@@ -19,11 +19,11 @@ public class ImageVpShowHelp {
         void showImage(Context context,ImageVpType imageVpType, String path, ImageView imageView);
     }
 
-    public ImageVpShowHelp.saveImageListener getSaveImageListener() {
+    public ImageVpShowManager.saveImageListener getSaveImageListener() {
         return saveImageListener;
     }
 
-    public void setSaveImageListener(ImageVpShowHelp.saveImageListener saveImageListener) {
+    public void setSaveImageListener(ImageVpShowManager.saveImageListener saveImageListener) {
         this.saveImageListener = saveImageListener;
     }
 
@@ -32,17 +32,17 @@ public class ImageVpShowHelp {
         void saveImage(Context context, String url,int position);
     }
 
-    private static ImageVpShowHelp imageVpShowHelp;
-    private ImageVpShowHelp(){}
-    public static ImageVpShowHelp getInstance(){
-        if (imageVpShowHelp==null){
-            synchronized (ImageVpShowHelp.class){
-                if (imageVpShowHelp==null){
-                    imageVpShowHelp=new ImageVpShowHelp();
+    private static ImageVpShowManager imageVpShowManager;
+    private ImageVpShowManager(){}
+    public static ImageVpShowManager getInstance(){
+        if (imageVpShowManager ==null){
+            synchronized (ImageVpShowManager.class){
+                if (imageVpShowManager ==null){
+                    imageVpShowManager =new ImageVpShowManager();
                 }
             }
         }
-        return imageVpShowHelp;
+        return imageVpShowManager;
     }
     public void showImage(Context context,ImageVpType imageVpType,String path,ImageView imageView){
         if (showImageListener!=null){

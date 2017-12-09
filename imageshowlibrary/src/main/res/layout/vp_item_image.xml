@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:gravity="center"
@@ -8,5 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/image"/>
-
+    <com.dinuscxj.progressbar.CircleProgressBar
+        android:id="@+id/progressbar"
+        app:style="solid"
+        android:layout_gravity="center"
+        app:background_color="#D6D7D7"
+        app:progress_background_color="#000000"
+        app:draw_progress_text="false"
+        app:progress_stroke_width="3dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
 </FrameLayout>

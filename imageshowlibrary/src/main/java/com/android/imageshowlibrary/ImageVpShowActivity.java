@@ -1,6 +1,4 @@
 package com.android.imageshowlibrary;
-import android.app.Activity;
-import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
@@ -24,6 +22,9 @@ import com.yanzhenjie.permission.RationaleListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.jessyan.progressmanager.ProgressManager;
+import okhttp3.OkHttpClient;
+
 public class ImageVpShowActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 private LinearLayout linear_back;
 private ImageShowViewPager vp_imageshow;
@@ -31,11 +32,6 @@ private TextView tv_image_number,tv_image_save;
 private ArrayList<ImageVpModel> imageList;
 private int currentPosition;
 private ImageViewPagerAdapter adapter;
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {
-            "android.permission.READ_EXTERNAL_STORAGE",
-            "android.permission.WRITE_EXTERNAL_STORAGE" };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +39,7 @@ private ImageViewPagerAdapter adapter;
         getData();
         initView();
         initViewPager();
+
     }
 
     @Override
@@ -129,9 +126,9 @@ private ImageViewPagerAdapter adapter;
 
     public void saveImage(){
     if (imageList.get(currentPosition).getImageVpType()== ImageVpType.Local){
-        ImageVpShowHelp.getInstance().showToast(ImageVpShowActivity.this,"该图为本地图片，无需下载");
+        ImageVpShowManager.getInstance().showToast(ImageVpShowActivity.this,"该图为本地图片，无需下载");
     }else{
-        ImageVpShowHelp.getInstance().saveImage(ImageVpShowActivity.this,imageList.get(currentPosition).getPath(),currentPosition);
+        ImageVpShowManager.getInstance().saveImage(ImageVpShowActivity.this,imageList.get(currentPosition).getPath(),currentPosition);
     }
 }
 
