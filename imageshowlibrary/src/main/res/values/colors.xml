@@ -6,4 +6,5 @@
     <color name="library_colorAccent">#FF4081</color>
     <color name="library_colorBlack">#000000</color>
     <color name="library_transparent">#0000</color>
+    <color name="library_white">#ffffff</color>
 </resources>

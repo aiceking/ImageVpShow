@@ -19,12 +19,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -34,10 +32,5 @@ dependencies {
     compile 'com.github.chrisbanes:PhotoView:2.0.0'
     //权限申请
     compile 'com.yanzhenjie:permission:1.1.2'
-    compile 'me.jessyan:progressmanager:1.5.0'
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
-    compile 'com.github.bumptech.glide:glide:4.2.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.2.0'
-    compile 'com.github.bumptech.glide:okhttp3-integration:4.2.0'
-    compile 'com.dinuscxj:circleprogressbar:1.1.1'
+    compile 'com.jaywei:mdprogress:1.0.2'
 }

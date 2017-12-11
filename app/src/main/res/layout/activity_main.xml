@@ -9,10 +9,17 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="展示图片"
+        android:text="展示网络图片"
         android:gravity="center"
-        android:id="@+id/btn"
+        android:id="@+id/btn_net"
         android:padding="10dp"
          />
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="展示本地图片"
+        android:gravity="center"
+        android:id="@+id/btn_local"
+        android:padding="10dp"
+        />
 </LinearLayout>

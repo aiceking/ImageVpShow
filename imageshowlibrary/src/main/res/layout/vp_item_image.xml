@@ -9,14 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/image"/>
-    <com.dinuscxj.progressbar.CircleProgressBar
+    <com.jaywei.mdprogress.CircularProgressBar
         android:id="@+id/progressbar"
-        app:style="solid"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
-        app:background_color="#D6D7D7"
-        app:progress_background_color="#000000"
-        app:draw_progress_text="false"
-        app:progress_stroke_width="3dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp" />
+        android:layout_marginBottom="14dp"
+        android:indeterminate="true"
+        app:cpb_color="#ffffff"
+        app:cpb_max_sweep_angle="300"
+        app:cpb_min_sweep_angle="10"
+        app:cpb_rotation_speed="1.0"
+        app:cpb_stroke_width="5dp"
+        app:cpb_cap_round="true"
+        app:cpb_sweep_speed="1.0"/>
 </FrameLayout>

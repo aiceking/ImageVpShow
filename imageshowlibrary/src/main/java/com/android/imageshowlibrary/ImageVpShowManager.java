@@ -1,10 +1,12 @@
 package com.android.imageshowlibrary;
 
 import android.content.Context;
-import android.widget.ImageView;
+import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 import com.android.imageshowlibrary.model.ImageVpType;
+import com.github.chrisbanes.photoview.PhotoView;
+import com.jaywei.mdprogress.CircularProgressBar;
 
 /**
  * Created by radio on 2017/11/10.
@@ -16,7 +18,7 @@ public class ImageVpShowManager {
     }
     private showImageListener showImageListener;
     public interface showImageListener{
-        void showImage(Context context,ImageVpType imageVpType, String path, ImageView imageView);
+        void showImage(Context context, ImageVpType imageVpType, String path, PhotoView imageView, CircularProgressBar progressBar);
     }
 
     public ImageVpShowManager.saveImageListener getSaveImageListener() {
@@ -44,9 +46,9 @@ public class ImageVpShowManager {
         }
         return imageVpShowManager;
     }
-    public void showImage(Context context,ImageVpType imageVpType,String path,ImageView imageView){
+    public void showImage(Context context, ImageVpType imageVpType, String path, PhotoView imageView, CircularProgressBar progressBar){
         if (showImageListener!=null){
-            showImageListener.showImage( context,imageVpType,path,imageView);
+            showImageListener.showImage( context,imageVpType,path,imageView,progressBar);
         }else{
             showToast(context,"请初始化图片加载接口");
         }

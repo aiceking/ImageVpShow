@@ -7,12 +7,13 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.android.imageshowlibrary.NewImageVpShowManager;
+
+import com.android.imageshowlibrary.ImageVpShowManager;
 import com.android.imageshowlibrary.R;
 import com.android.imageshowlibrary.model.ImageVpModel;
-import com.dinuscxj.progressbar.CircleProgressBar;
 import com.github.chrisbanes.photoview.PhotoView;
 import java.util.List;
+import com.jaywei.mdprogress.CircularProgressBar;
 
 /**
  * Created by radio on 2017/9/20.
@@ -37,7 +38,7 @@ public class ImageViewPagerAdapter extends PagerAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.vp_item_image,container,false);
             view.setTag(position);
             final PhotoView image = (PhotoView) view.findViewById(R.id.image);
-            CircleProgressBar circleProgressBar=(CircleProgressBar)view.findViewById(R.id.progressbar);
+            CircularProgressBar circleProgressBar=(CircularProgressBar)view.findViewById(R.id.progressbar);
             circleProgressBar.setVisibility(View.GONE);
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -45,7 +46,7 @@ public class ImageViewPagerAdapter extends PagerAdapter {
                     ((Activity)context).finish();
                 }
             });
-            NewImageVpShowManager.getInstance().showImage(context,list.get(position).getImageVpType(),list.get(position).getPath(),image,circleProgressBar);
+            ImageVpShowManager.getInstance().showImage(context,list.get(position).getImageVpType(),list.get(position).getPath(),image,circleProgressBar);
             cacheView.put(position,view);
         }
         container.addView(view);
