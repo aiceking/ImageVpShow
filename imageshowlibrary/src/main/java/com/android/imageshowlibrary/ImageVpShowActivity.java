@@ -115,7 +115,8 @@ private ImageViewPagerAdapter adapter;
                     Toast.makeText(ImageVpShowActivity.this, "您已手动拒绝存储权限，请自行在设置中授权", Toast.LENGTH_SHORT).show();
                 }else if (!AndPermission.hasPermission(ImageVpShowActivity.this,Permission.STORAGE)){
                     Toast.makeText(ImageVpShowActivity.this, "请开启存储权限", Toast.LENGTH_SHORT).show();
-
+                }else{
+                    saveImage();
                 }
             }
         }).start();

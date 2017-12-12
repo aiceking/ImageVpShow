@@ -7,16 +7,24 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.imageshowlibrary.ImageVpShowActivity;
 import com.android.imageshowlibrary.model.ImageVpModel;
 import com.android.imageshowlibrary.model.ImageVpType;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yanzhenjie.permission.PermissionListener;
+import com.yanzhenjie.permission.Rationale;
+import com.yanzhenjie.permission.RationaleListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 private Button btn_net,btn_local;
@@ -48,11 +56,42 @@ private Button btn_net,btn_local;
             @Override
             public void onClick(View view) {
                 //模拟本地图片展示
-                getImage();
+                getFilePerMission();
             }
         });
     }
 
+    private void getFilePerMission() {
+        AndPermission.with(this)
+                .requestCode(100)
+                .permission(Permission.STORAGE)
+                .rationale(new RationaleListener() {
+                    @Override
+                    public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
+                        rationale.resume();
+                    }
+                }).callback(new PermissionListener() {
+            @Override
+            public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                if(AndPermission.hasPermission(MainActivity.this,Permission.STORAGE)) {
+                    getImage();
+                } else {
+                    Toast.makeText(MainActivity.this, "存储权限授予失败，请自行在设置中授权", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+                if (AndPermission.hasAlwaysDeniedPermission(MainActivity.this, deniedPermissions)) {
+                    Toast.makeText(MainActivity.this, "您已手动拒绝存储权限，请自行在设置中授权", Toast.LENGTH_SHORT).show();
+                }else if (!AndPermission.hasPermission(MainActivity.this,Permission.STORAGE)){
+                    Toast.makeText(MainActivity.this, "请开启存储权限", Toast.LENGTH_SHORT).show();
+                }else{
+                    getImage();
+                }
+            }
+        }).start();
+    }
     private void startLocalIntent() {
         Intent intent=new Intent(MainActivity.this, ImageVpShowActivity.class);
         intent.putParcelableArrayListExtra("imageList",list_local);
@@ -60,6 +99,7 @@ private Button btn_net,btn_local;
         startActivity(intent);
     }
     public void getImage(){
+
         if (list_local==null){
             list_local=new ArrayList<>();
         }else{
