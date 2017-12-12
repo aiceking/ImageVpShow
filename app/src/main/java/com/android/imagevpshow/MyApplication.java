@@ -21,6 +21,8 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.jaywei.mdprogress.CircularProgressBar;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,11 +36,13 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
+        LeakCanary.install(this);
         ImageVpShowManager.getInstance().setShowImageListener(new ImageVpShowManager.showImageListener() {
             @Override
             public void showImage(Context context, ImageVpType imageVpType, String path, PhotoView imageView, final CircularProgressBar progressBar) {
                 if (imageVpType== ImageVpType.Local){
-                    Glide.with(context).load(new File(path)).asBitmap().listener(new RequestListener<File, Bitmap>() {
+                    Glide.with(context).load(new File(path)).asBitmap().animate(R.anim.mylibrary_in_anim)
+                            .listener(new RequestListener<File, Bitmap>() {
                         @Override
                         public boolean onException(Exception e, File model, Target<Bitmap> target, boolean isFirstResource) {
                             return false;
@@ -49,10 +53,12 @@ public class MyApplication extends Application{
                             progressBar.setVisibility(View.GONE);
                             return false;
                         }
-                    }).into(imageView);
+                    })
+                            .into(imageView);
 
                 }else if (imageVpType== ImageVpType.Net){
-                    Glide.with(context).load(path).asBitmap().listener(new RequestListener<String, Bitmap>() {
+                    Glide.with(context).load(path).asBitmap().animate(R.anim.mylibrary_in_anim)
+                            .listener(new RequestListener<String, Bitmap>() {
                         @Override
                         public boolean onException(Exception e, String model, Target<Bitmap> target, boolean isFirstResource) {
                             return false;
@@ -63,7 +69,8 @@ public class MyApplication extends Application{
                             progressBar.setVisibility(View.GONE);
                             return false;
                         }
-                    }).into(imageView);
+                    })
+                            .into(imageView);
                 }
             }
         });

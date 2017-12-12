@@ -33,11 +33,10 @@ private ImageViewPagerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_vp_show);
+        setContentView(R.layout.activity_image_vp_show_library);
         getData();
         initView();
         initViewPager();
-
     }
 
     @Override

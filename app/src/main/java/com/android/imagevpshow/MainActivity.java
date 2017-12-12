@@ -9,12 +9,10 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.android.imageshowlibrary.ImageVpShowActivity;
-import com.android.imageshowlibrary.ImageVpShowFragmentActivity;
 import com.android.imageshowlibrary.model.ImageVpModel;
 import com.android.imageshowlibrary.model.ImageVpType;
 
@@ -80,7 +78,6 @@ private Button btn_net,btn_local;
                 while (imageCursor.moveToNext()){
                     String path = imageCursor.getString(imageCursor
                             .getColumnIndex(MediaStore.MediaColumns.DATA)).trim();
-                    Log.v("path",path);
                     list_local.add(new ImageVpModel(ImageVpType.Local,path));
                 }
                 //扫描完释放
@@ -119,5 +116,8 @@ private Button btn_net,btn_local;
         startActivity(intent);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }
