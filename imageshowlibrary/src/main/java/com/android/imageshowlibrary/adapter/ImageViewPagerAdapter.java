@@ -40,6 +40,7 @@ public class ImageViewPagerAdapter extends PagerAdapter {
             view.setTag(position);
             final PhotoView image = (PhotoView) view.findViewById(R.id.image);
             CircularProgressBar circleProgressBar=(CircularProgressBar)view.findViewById(R.id.progressbar);
+            circleProgressBar.setVisibility(View.VISIBLE);
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -51,6 +52,7 @@ public class ImageViewPagerAdapter extends PagerAdapter {
         }else{
             final PhotoView image = (PhotoView) view.findViewById(R.id.image);
             CircularProgressBar circleProgressBar=(CircularProgressBar)view.findViewById(R.id.progressbar);
+            circleProgressBar.setVisibility(View.VISIBLE);
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
