@@ -30,10 +30,22 @@ public class ImageVpShowManager {
     }
 
     private saveImageListener saveImageListener;
+
+    public ImageVpShowManager.saveVideoListener getSaveVideoListener() {
+        return saveVideoListener;
+    }
+
+    public void setSaveVideoListener(ImageVpShowManager.saveVideoListener saveVideoListener) {
+        this.saveVideoListener = saveVideoListener;
+    }
+
+    private saveVideoListener saveVideoListener;
     public interface saveImageListener{
         void saveImage(Context context, String url,int position);
     }
-
+    public interface saveVideoListener{
+        void saveVideo(Context context, String url,int position);
+    }
     private static ImageVpShowManager imageVpShowManager;
     private ImageVpShowManager(){}
     public static ImageVpShowManager getInstance(){
@@ -58,6 +70,13 @@ public class ImageVpShowManager {
             saveImageListener.saveImage(context,url,position);
         }else{
             showToast(context,"请初始化图片下载接口");
+        }
+    }
+    public void saveVideo(Context context, String url,int position){
+        if (saveVideoListener!=null){
+            saveVideoListener.saveVideo(context,url,position);
+        }else{
+            showToast(context,"请初始化视频下载接口");
         }
     }
     private  Toast toast;

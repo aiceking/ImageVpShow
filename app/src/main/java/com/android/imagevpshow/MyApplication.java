@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -40,7 +41,7 @@ public class MyApplication extends Application{
         ImageVpShowManager.getInstance().setShowImageListener(new ImageVpShowManager.showImageListener() {
             @Override
             public void showImage(Context context, ImageVpType imageVpType, String path, PhotoView imageView, final CircularProgressBar progressBar) {
-                if (imageVpType== ImageVpType.Local){
+                if (imageVpType== ImageVpType.LocalImage){
                     Glide.with(context).load(new File(path)).asBitmap().animate(R.anim.mylibrary_in_anim)
                             .listener(new RequestListener<File, Bitmap>() {
                         @Override
@@ -56,7 +57,7 @@ public class MyApplication extends Application{
                     })
                             .into(imageView);
 
-                }else if (imageVpType== ImageVpType.Net){
+                }else if (imageVpType== ImageVpType.NetImage){
                     Glide.with(context).load(path).asBitmap().animate(R.anim.mylibrary_in_anim)
                             .listener(new RequestListener<String, Bitmap>() {
                         @Override
@@ -79,6 +80,12 @@ public class MyApplication extends Application{
             @Override
             public void saveImage(Context context, String url, int position) {
                 savePicture(context,"myTestImages","image"+position,url);
+            }
+        });
+        ImageVpShowManager.getInstance().setSaveVideoListener(new ImageVpShowManager.saveVideoListener() {
+            @Override
+            public void saveVideo(Context context, String url, int position) {
+                Log.v("哈哈","下载视频");
             }
         });
     }

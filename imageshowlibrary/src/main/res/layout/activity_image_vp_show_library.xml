@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:id="@+id/vp_imageshow"></com.android.imageshowlibrary.view.ImageShowViewPager>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
@@ -36,18 +36,17 @@
             />
         </LinearLayout>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="#ffffff"
             android:textSize="16sp"
             android:id="@+id/tv_image_number"
-            android:layout_alignParentLeft="true"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:gravity="center"
-            android:layout_alignParentBottom="true"
             android:background="@drawable/imagevp_back_bg"
             android:layout_marginLeft="15dp"
             android:text="1/20"/>
@@ -68,5 +67,5 @@
             android:layout_marginRight="15dp"
             android:id="@+id/tv_image_save"
             />
-    </RelativeLayout>
+    </LinearLayout>
 </FrameLayout>

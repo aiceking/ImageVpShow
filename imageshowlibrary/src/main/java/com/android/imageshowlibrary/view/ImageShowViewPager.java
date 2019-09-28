@@ -28,7 +28,6 @@ public class ImageShowViewPager extends ViewPager {
         }
         return false;
     }
-
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         try {

@@ -12,16 +12,6 @@ import java.io.Serializable;
 public class ImageVpModel implements Parcelable {
     private ImageVpType imageVpType;
     private String path;
-    private boolean isLoad;
-
-    public boolean isLoad() {
-        return isLoad;
-    }
-
-    public void setLoad(boolean load) {
-        isLoad = load;
-    }
-
     public ImageVpModel(){}
     public ImageVpModel(ImageVpType imageVpType, String path) {
         this.imageVpType = imageVpType;
@@ -42,6 +32,7 @@ public class ImageVpModel implements Parcelable {
     public void setPath(String path) {
         this.path = path;
     }
+
 
     @Override
     public int describeContents() {

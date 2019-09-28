@@ -4,7 +4,7 @@ group='com.github.NoEndToLF'
 android {
     compileSdkVersion 26
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -33,4 +33,16 @@ dependencies {
     //权限申请
     compile 'com.yanzhenjie:permission:1.1.2'
     compile 'com.jaywei:mdprogress:1.0.2'
+    //# 必选，可兼容市面上绝大部分设备
+    compile 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.2'
+    compile 'com.github.dueeeke.dkplayer:dkplayer-armv7a:2.5.2'
+
+    // # 可选，用于兼容一些其他的CPU架构
+    compile 'com.github.dueeeke.dkplayer:dkplayer-armv5:2.5.2'
+    compile 'com.github.dueeeke.dkplayer:dkplayer-arm64:2.5.2'
+    compile 'com.github.dueeeke.dkplayer:dkplayer-x86:2.5.2'
+    compile 'com.github.dueeeke.dkplayer:dkplayer-x86_64:2.5.2'
+
+    // # 可选，里面包含StandardVideoController的实现
+    compile 'com.github.dueeeke.dkplayer:dkplayer-ui:2.5.2'
 }

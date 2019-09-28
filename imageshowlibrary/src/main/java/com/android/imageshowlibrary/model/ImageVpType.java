@@ -5,6 +5,8 @@ package com.android.imageshowlibrary.model;
  */
 
 public enum ImageVpType {
-    Local,
-    Net
+    LocalImage,
+    NetImage,
+    LocalVideo,
+    NetVideo
 }

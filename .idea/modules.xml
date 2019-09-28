@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ImageVpShow.iml" filepath="$PROJECT_DIR$/ImageVpShow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/ImageVpShow-app.iml" filepath="$PROJECT_DIR$/app/ImageVpShow-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/imageshowlibrary/ImageVpShow-imageshowlibrary.iml" filepath="$PROJECT_DIR$/imageshowlibrary/ImageVpShow-imageshowlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/imageshowlibrary/imageshowlibrary.iml" filepath="$PROJECT_DIR$/imageshowlibrary/imageshowlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/myProject-ImageVpShow.iml" filepath="$PROJECT_DIR$/myProject-ImageVpShow.iml" />
     </modules>
   </component>
 </project>
