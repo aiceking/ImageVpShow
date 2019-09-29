@@ -47,7 +47,6 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:gravity="center"
-            android:background="@drawable/imagevp_back_bg"
             android:layout_marginLeft="15dp"
             android:text="1/20"/>
         <TextView
